@@ -14,6 +14,11 @@ pipeline {
         '''
      }
    }
+    stage('Which Node?') {
+      steps {
+        echo "Running on ${env.NODE_NAME}"
+      }
+    }
     stage ('test') {
       steps {
         sh '''#!/bin/bash
