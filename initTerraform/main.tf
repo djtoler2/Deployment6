@@ -1,4 +1,11 @@
+#https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/sleep
 #Providers *****************************************************************
+
+provider "aws" {
+  region     = var.default_region
+  access_key = "aws_access_key"
+  secret_key = "aws_secret_key"
+}
 
 provider "aws" {
   alias         = "east"
@@ -9,15 +16,23 @@ provider "aws" {
 
 provider "aws" {
   alias         = "west"
-  region        = "us-west-2"
+  region        = var.west_region
   access_key    = var.access_key
   secret_key    = var.secret_key
 }
 
 #2 VPCS *******************************************************************************
 resource "aws_vpc" "vpc_east" {
+  provider = aws.east
   cidr_block   = var.vpc_cidr_block_east
   tags        = {Name = "VPC-us-east-1"}
+}
+
+  # Sleep for VPC East *************************************************
+resource "time_sleep" "wait_30_seconds" {
+  depends_on = [aws_vpc.vpc_east]
+
+  create_duration = "30s"
 }
 
 resource "aws_vpc" "vpc_west" {
@@ -26,17 +41,14 @@ resource "aws_vpc" "vpc_west" {
   tags = {Name = "VPC-us-west-2"}
 }
 
-# Internet Gateway for US West 2
-resource "aws_internet_gateway" "dp6_igw_west" {
-  provider = aws.west
-  vpc_id = aws_vpc.vpc_west.id
+# Sleep for VPC West *************************************************
+resource "time_sleep" "wait_30_seconds2" {
+  depends_on = [aws_vpc.vpc_west]
+
+  create_duration = "30s"
 }
 
-# Internet Gateway for US East 1
-resource "aws_internet_gateway" "dp6_igw_east" {
-  provider = aws.east
-  vpc_id = aws_vpc.vpc_east.id
-}
+
 
 # 2 Subnets for us-east-1 *************************************************************
 resource "aws_subnet" "subnet_1_east" {
@@ -103,7 +115,7 @@ resource "aws_security_group" "dp6_sg_west" {
 #Security Group for US East 1 *****************************************************
 resource "aws_security_group" "dp6_sg_east" {
   provider      = aws.east
-  vpc_id        = aws_vpc.main.id
+  vpc_id        = aws_vpc.vpc_east.id
 
   ingress {
     from_port   = var.ssh_access.from_port
@@ -130,11 +142,11 @@ resource "aws_security_group" "dp6_sg_east" {
 
 #EC2 Instances for US East 1 **************************************************************
 resource "aws_instance" "applicationServer01-east" {
-  ami                             = var.ec2_ami_id
+  ami                             = "ami-0fc5d935ebf8bc3bc"
   instance_type                   = var.ec2_instance_type
   subnet_id                       = aws_subnet.subnet_1_east.id
-  security_groups                 = [aws_security_group.dp6_sg_east.id]
-  tags                            = "app1east"
+  vpc_security_group_ids          = [aws_security_group.dp6_sg_east.id]
+  tags                            = var.ec2_instance_tag_3
   user_data                       = base64encode(file(var.ud_app_dp6))
   associate_public_ip_address     = var.public_ip
   key_name                        = var.key_name
@@ -142,11 +154,11 @@ resource "aws_instance" "applicationServer01-east" {
 }
 
 resource "aws_instance" "applicationServer02-east" {
-  ami                             = var.ec2_ami_id
+  ami                             = "ami-0fc5d935ebf8bc3bc"
   instance_type                   = var.ec2_instance_type
   subnet_id                       = aws_subnet.subnet_2_east.id
-  security_groups                 = [aws_security_group.dp6_sg_east.id]
-  tags                            = "app2east"
+  vpc_security_group_ids          = [aws_security_group.dp6_sg_east.id]
+  tags                            = var.ec2_instance_tag_4
   user_data                       = base64encode(file(var.ud_app_dp6))
   associate_public_ip_address     = var.public_ip
   key_name                        = var.key_name
@@ -156,27 +168,41 @@ resource "aws_instance" "applicationServer02-east" {
 
 #EC2 Instances for US West 2 ***********************************************************
 resource "aws_instance" "applicationServer01-west" {
-  ami                             = var.ec2_ami_id
+  provider                        = aws.west
+  ami                             = "ami-0efcece6bed30fd98"
   instance_type                   = var.ec2_instance_type
   subnet_id                       = aws_subnet.subnet_1_west.id
-  security_groups                 = [aws_security_group.dp6_sg_west]
-  tags                            = "app1west"
+  vpc_security_group_ids          = [aws_security_group.dp6_sg_west.id]
+  tags                            = var.ec2_instance_tag_1
   user_data                       = base64encode(file(var.ud_app_dp6))
   associate_public_ip_address     = var.public_ip
-  key_name                        = var.key_name
+  key_name                        = var.key_name_west
   iam_instance_profile            = var.machine_role
 }
 
 resource "aws_instance" "applicationServer02-west" {
-  ami                             = var.ec2_ami_id
+  provider                        = aws.west
+  ami                             = "ami-0efcece6bed30fd98"
   instance_type                   = var.ec2_instance_type
   subnet_id                       = aws_subnet.subnet_2_west.id
-  security_groups                 = [aws_security_group.dp6_sg_west.id]
-  tags                            = "app2west"
+  vpc_security_group_ids          = [aws_security_group.dp6_sg_west.id]
+  tags                            = var.ec2_instance_tag_2
   user_data                       = base64encode(file(var.ud_app_dp6))
   associate_public_ip_address     = var.public_ip
-  key_name                        = var.key_name
+  key_name                        = var.key_name_west
   iam_instance_profile            = var.machine_role
+}
+
+# Internet Gateway for US West 2
+resource "aws_internet_gateway" "dp6_igw_west" {
+  provider = aws.west
+  vpc_id = aws_vpc.vpc_west.id
+}
+
+# Internet Gateway for US East 1
+resource "aws_internet_gateway" "dp6_igw_east" {
+  provider = aws.east
+  vpc_id = aws_vpc.vpc_east.id
 }
 
 # Route Table for Us West 2 **********************************************************

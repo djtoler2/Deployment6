@@ -1,5 +1,7 @@
 #Set variables for provisioner
 variable "df_region"                {}
+variable "default_region"           {}
+variable "west_region"              {}
 variable "access_key"               {}
 variable "secret_key"               {}
 
@@ -21,8 +23,11 @@ variable "availability_zone_west_b" {}
 
 #Set variables for instances
 variable "ec2_ami_id"               {}
+variable "ec2_ami_id_east"          {}
+variable "ec2_ami_id_west"          {}
 variable "ec2_instance_type"        {}
 variable "key_name"                 {}
+variable "key_name_west"            {}
 
 #Set IAM role for instances
 variable "access_level"             {default = "ec2_full_access_role"}
@@ -49,6 +54,12 @@ variable "ec2_instance_tag_3" {
   description = "tag for third instance"
   type        = map(string)
 }
+
+variable "ec2_instance_tag_4" {
+  description = "tag for fourth instance"
+  type        = map(string)
+}
+
 
 #Set variable for user data scripts
 variable "ud_app_dp6" {
