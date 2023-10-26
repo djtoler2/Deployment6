@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh '''#!/bin/bash
         python3.7 -m venv test
+        
         pip install mysqlclient
         source test/bin/activate
         
