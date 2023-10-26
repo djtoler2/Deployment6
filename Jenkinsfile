@@ -17,8 +17,6 @@ pipeline {
       steps {
         sh '''#!/bin/bash
         source test/bin/activate
-        pip install pip --upgrade
-        pip install mysqlclient
         pip install pytest
         py.test --verbose --junit-xml test-reports/results.xml
         ''' 
