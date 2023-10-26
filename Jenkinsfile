@@ -6,9 +6,9 @@ pipeline {
         sh '''#!/bin/bash
         python3.7 -m venv test
         
-        pip install mysqlclient
-        source test/bin/activate
         
+        source test/bin/activate
+        pip install mysqlclient
         pip install pip --upgrade
         
         pip install gunicorn
