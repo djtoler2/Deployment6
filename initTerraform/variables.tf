@@ -2,8 +2,8 @@
 variable "df_region"                {}
 variable "default_region"           {}
 variable "west_region"              {}
-variable "access_key"               {}
-variable "secret_key"               {}
+# variable "access_key"               {}
+# variable "secret_key"               {}
 
 #Set variables for networking
 variable "df_cidr_block_anywhere"   {}
