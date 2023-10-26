@@ -4,7 +4,7 @@ sudo apt update
 sudo apt install build-essential 
 sudo apt install -y default-jre
 sudo apt-get install pkg-config
-
+#c
 sudo apt install libmysqlclient-dev -y
 
 curl -O https://raw.githubusercontent.com/djtoler/automated_installation_scripts/main/auto-python.sh
