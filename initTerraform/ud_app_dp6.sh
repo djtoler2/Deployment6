@@ -9,12 +9,10 @@ chmod +x auto-python.sh
 chmod +x auto-aws_cli.sh
 
 sudo apt install build-essential 
-sudo apt install libmysqlclient-dev
+sudo apt install libmysqlclient-dev -y
 
 #Run the Python & AWS installation scripts
 ./auto-python.sh
 sudo apt install -y python3.7-dev
 ./auto-aws_cli.sh
 
-sudo apt install build-essential 
-sudo apt install libmysqlclient-dev
