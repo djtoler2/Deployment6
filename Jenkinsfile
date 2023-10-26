@@ -5,10 +5,9 @@ pipeline {
       steps {
         sh '''#!/bin/bash
         python3.7 -m venv test
-        
+        pip install mysqlclient
         
         source test/bin/activate
-        pip install mysqlclient
         pip install pip --upgrade
         
         pip install gunicorn
@@ -20,7 +19,6 @@ pipeline {
       steps {
         sh '''#!/bin/bash
         source test/bin/activate
-        pip install mysqlclient
         pip install pytest
         py.test --verbose --junit-xml test-reports/results.xml
         ''' 
