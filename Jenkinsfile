@@ -32,7 +32,7 @@ pipeline {
     }
    
      stage('Init') {
-       agent {label 'awsDeploy'}
+       agent {label 'awsDeploy2'}
        steps {
         withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
@@ -43,7 +43,7 @@ pipeline {
     }
    }
       stage('Plan') {
-        agent {label 'awsDeploy'}
+        agent {label 'awsDeploy2'}
        steps {
         withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
@@ -54,7 +54,7 @@ pipeline {
     }
    }
       stage('Apply') {
-        agent {label 'awsDeploy'}
+        agent {label 'awsDeploy2'}
        steps {
         withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                         string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
