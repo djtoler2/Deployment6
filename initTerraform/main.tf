@@ -40,18 +40,18 @@ resource "aws_internet_gateway" "dp6_igw_east" {
 
 # 2 Subnets for us-east-1 *************************************************************
 resource "aws_subnet" "subnet_1_east" {
-  provider                = aws.west
-  vpc_id                  = aws_vpc.vpc_west.id
-  cidr_block              = var.subnet_cidr_block_west_a
-  availability_zone       = var.availability_zone_west_a
+  provider                = aws.east
+  vpc_id                  = aws_vpc.vpc_east.id
+  cidr_block              = var.subnet_cidr_block_east_a
+  availability_zone       = var.availability_zone_east_a
   map_public_ip_on_launch = var.public_ip
 }
 
 resource "aws_subnet" "subnet_2_east" {
-  provider                = aws.west
-  vpc_id                  = aws_vpc.vpc_west.id
-  cidr_block              = var.subnet_cidr_block_west_b
-  availability_zone       = var.availability_zone_west_b
+  provider                = aws.east
+  vpc_id                  = aws_vpc.vpc_east.id
+  cidr_block              = var.subnet_cidr_block_east_b
+  availability_zone       = var.availability_zone_east_b
   map_public_ip_on_launch = var.public_ip
 }
 

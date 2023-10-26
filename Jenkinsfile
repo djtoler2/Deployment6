@@ -6,10 +6,10 @@ pipeline {
         sh '''#!/bin/bash
         python3.7 -m venv test
         source test/bin/activate
-        pip install pip --upgrade
-        pip install -r requirements.txt
         pip install mysqlclient
         pip install gunicorn
+        pip install pip --upgrade
+        pip install -r requirements.txt
         '''
      }
    }
