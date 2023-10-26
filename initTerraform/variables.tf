@@ -5,6 +5,16 @@ variable "west_region"              {}
 # variable "access_key"               {}
 # variable "secret_key"               {}
 
+variable "aws_access_key" {
+  description = "AWS Access Key"
+  type        = string
+}
+
+variable "aws_secret_key" {
+  description = "AWS Secret Key"
+  type        = string
+}
+
 #Set variables for networking
 variable "df_cidr_block_anywhere"   {}
 variable "public_ip"                {}
