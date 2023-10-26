@@ -1,42 +1,43 @@
 pipeline {
   agent any
    stages {
-    stage ('Build') {
-      steps {
-        sh '''#!/bin/bash
-        python3.7 -m venv test
-        source test/bin/activate
-        pip install pip --upgrade
-        pip install -r requirements.txt
-        '''
-     }
-   }
-    stage ('test') {
-      steps {
-        sh '''#!/bin/bash
-        source test/bin/activate
-        pip install mysqlclient
-        pip install pytest
-        py.test --verbose --junit-xml test-reports/results.xml
-        ''' 
-      }
-    
-      post{
-        always {
-          junit 'test-reports/results.xml'
-        }
-       
-      }
-    }
-    stage('Apply') {
-        agent {label 'awsDeploy'}
-        steps {
-         withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
+
+        stage('Apply') {
+          agent {label 'awsDeploy2'}
+          steps {
+            withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
                          string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
                              dir('initTerraform') {
                                sh 'terraform destroy' 
                              }
-          }
+                          }}}
+  //   stage ('Build') {
+  //     steps {
+  //       sh '''#!/bin/bash
+  //       python3.7 -m venv test
+  //       source test/bin/activate
+  //       pip install pip --upgrade
+  //       pip install -r requirements.txt
+  //       '''
+  //    }
+  //  }
+  //   stage ('test') {
+  //     steps {
+  //       sh '''#!/bin/bash
+  //       source test/bin/activate
+  //       pip install mysqlclient
+  //       pip install pytest
+  //       py.test --verbose --junit-xml test-reports/results.xml
+  //       ''' 
+  //     }
+    
+  //     post{
+  //       always {
+  //         junit 'test-reports/results.xml'
+  //       }
+       
+  //     }
+  //   }
    
   //    stage('Init') {
   //      agent {label 'awsDeploy2'}
