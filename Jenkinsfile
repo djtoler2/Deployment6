@@ -5,24 +5,21 @@ pipeline {
       steps {
         sh '''#!/bin/bash
         python3.7 -m venv test
+        pip install mysqlclient
         source test/bin/activate
         
         pip install pip --upgrade
-        MYSQL_CONFIG=/usr/bin/mysql_config pip install mysqlclient
+        
         pip install gunicorn
         pip install -r requirements.txt
         '''
      }
    }
-    stage('Which Node?') {
-      steps {
-        echo "Running on ${env.NODE_NAME}"
-      }
-    }
     stage ('test') {
       steps {
         sh '''#!/bin/bash
         source test/bin/activate
+        pip install mysqlclient
         pip install pytest
         py.test --verbose --junit-xml test-reports/results.xml
         ''' 
