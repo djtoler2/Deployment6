@@ -26,10 +26,10 @@ ec2_ami_id              = "ami-0fc5d935ebf8bc3bc"
 ec2_ami_id_east         = "ami-0fc5d935ebf8bc3bc"
 ec2_ami_id_west         = "ami-0efcece6bed30fd98"
 ec2_instance_type       = "t2.medium"
-ec2_instance_tag_1      = {Name = "ec2_west_1"}
-ec2_instance_tag_2      = {Name = "ec2_west_2"}
-ec2_instance_tag_3      = {Name = "ec2_east_1"}
-ec2_instance_tag_4      = {Name = "ec2_east_2"}
+ec2_instance_tag_1      = {Name = "applicationServer01-west"}
+ec2_instance_tag_2      = {Name = "applicationServer02-west"}
+ec2_instance_tag_3      = {Name = "applicationServer01-east"}
+ec2_instance_tag_4      = {Name = "applicationServer02-east"}
 ud_app_dp6              = "ud_app_dp6.sh"
 key_name                = "dp6_kp"
 key_name_west           = "dp6_kp_west"
