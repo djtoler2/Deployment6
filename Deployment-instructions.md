@@ -17,7 +17,7 @@ Load Balancer:
 - purpose-region, example: ALB-east.
 ```
 2.  Use Terraformm to create 2 instances in your default VPC for a Jenkins manager and agent architecture (see below for more information)
-3. The following must be installed:.
+3. The following must be installed:..
 ```
 Instance 1:
 - Jenkins, software-properties-common, add-apt-repository -y ppa:deadsnakes/ppa, python3.7, python3.7-venv, build-essential, libmysqlclient-dev, python3.7-dev
