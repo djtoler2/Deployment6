@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd /home/ubuntu
-
 sudo apt update
 sudo apt install build-essential 
 sudo apt install libmysqlclient-dev -y
@@ -18,7 +16,10 @@ chmod +x auto-aws_cli.sh
 ./auto-python.sh
 ./auto-aws_cli.sh
 
+cd /home/ubuntu
+
 #Install & run the application
 curl -O https://raw.githubusercontent.com/djtoler/automated_installation_scripts/main/apps/banking-app.sh
 chmod +x banking-app.sh
 ./banking-app.sh
+
