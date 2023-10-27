@@ -18,7 +18,7 @@ chmod +x auto-aws_cli.sh
 
 cd /home/ubuntu
 
-#Install & run the application
+#Install & run the application,
 curl -O https://raw.githubusercontent.com/djtoler/automated_installation_scripts/main/apps/banking-app.sh
 chmod +x banking-app.sh
 ./banking-app.sh
