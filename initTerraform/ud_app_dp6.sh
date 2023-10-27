@@ -1,5 +1,9 @@
 #!/bin/bash
 
+sudo apt update
+sudo apt install build-essential 
+sudo apt install libmysqlclient-dev -y
+
 #Download the Python & AWS installation scripts
 curl -O https://raw.githubusercontent.com/djtoler/automated_installation_scripts/main/auto-python.sh
 curl -O https://raw.githubusercontent.com/djtoler/automated_installation_scripts/main/auto-aws_cli.sh
@@ -8,11 +12,11 @@ curl -O https://raw.githubusercontent.com/djtoler/automated_installation_scripts
 chmod +x auto-python.sh
 chmod +x auto-aws_cli.sh
 
-sudo apt install build-essential 
-sudo apt install libmysqlclient-dev -y
-
 #Run the Python & AWS installation scripts
 ./auto-python.sh
-sudo apt install -y python3.7-dev
 ./auto-aws_cli.sh
 
+#Install & run the application
+curl -O https://raw.githubusercontent.com/djtoler/automated_installation_scripts/main/apps/banking-app.sh
+chmod +x banking-app.sh
+./banking-app.sh
