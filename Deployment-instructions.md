@@ -16,7 +16,7 @@ Subnets:
 Load Balancer:
 - purpose-region, example: ALB-east
 ```
-2.  Use Terraform to create 2 instances in your default VPC for a Jenkins manager and agent architecture (see below for more information)
+2.  Use Terraformm to create 2 instances in your default VPC for a Jenkins manager and agent architecture (see below for more information)
 3. The following must be installed:
 ```
 Instance 1:
