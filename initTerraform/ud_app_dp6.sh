@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /home/ubuntu
+
 sudo apt update
 sudo apt install build-essential 
 sudo apt install libmysqlclient-dev -y
