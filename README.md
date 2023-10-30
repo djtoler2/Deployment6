@@ -13,13 +13,20 @@
 
 ___
 
-
-
-
-
 Issues
 
-Steps
+
+
+## Steps
+* #### Download banking application source code from GitHub to local machine
+* #### Create our second branch calld "dev"
+* #### Use Terraform to deploy our CICD infrastructure using Jenkins controller/agent architecture
+* #### Srore AWS credentials as enviornment variables in Jenkins
+* #### Set up AWS RDS database
+* #### Deploy our multi-region banking application infrastructure from our Jenkins agent using Terraform
+* #### Configure a load balancer for each region our banking application is deployed in
+
+
 
 System Diagram
 
