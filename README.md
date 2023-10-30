@@ -28,6 +28,10 @@ Issues
 
 
 
-System Diagram
+## System Diagram
+
+<p align="center">
+<img src="https://github.com/djtoler2/Deployment6/blob/main/assets/dp6duagram.png">
+</p>
 
 Optimization
