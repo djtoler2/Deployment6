@@ -28,12 +28,6 @@ ___
 | ----------------------------------- | ----------------------------------- |
 | ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/elberror3.PNG) | ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/elberror4.PNG) |
 
-
-<p align="center">
-<img src="https://github.com/djtoler2/Deployment6/blob/main/assets/lb5050.PNG">
-</p>
-
-
 ___
 
 ## Steps
@@ -112,7 +106,7 @@ curl -O https://github.com/djtoler2/Deployment6/blob/main/ud_jenkins_controller.
     * ##### _2 Route Tables_
 
 > ```
-cd terraformIni
+cd terraformInit
 git add .
 git commit -m"pushing infrastructure"
 git push
@@ -120,6 +114,8 @@ git push
 
 6. #### Configure a load balancer for each region our banking application is deployed in
 * ##### _Create a task for each application instance_
+ * <p align="left"><img src="https://github.com/djtoler2/Deployment6/blob/main/assets/lb5050.PNG" width="75%"></p>
+
 * ##### _Create a load balancer_
 * ##### _Attach each task to the load balancer_
 * ##### _Check our application at the load balancers URL_
