@@ -40,13 +40,13 @@ _
 
 5. #### Deploy our multi-region banking application infrastructure from our Jenkins agent using Terraform
 * ##### _Configure Terraform files to deploy:_
-*    ##### _2 VPC's (US-East-1, US-West-2)_
-*    ##### _2 Route Tables_
-*    ##### _2 Subnets in each region (US-East-1, US-West-2)_
-*    ##### _2 Availability Zones in each region (US-East-1, US-West-2)_
-*    ##### _1 Internet Gateway in each region (US-East-1, US-West-2)_
-*    ##### _2 EC2 instances in each region (US-East-1, US-West-2)_
-*    ##### _2 Route Tables_
+    * ##### _2 VPC's (US-East-1, US-West-2)_
+    * ##### _2 Route Tables_
+    * ##### _2 Subnets in each region (US-East-1, US-West-2)_
+    * ##### _2 Availability Zones in each region (US-East-1, US-West-2)_
+    * ##### _1 Internet Gateway in each region (US-East-1, US-West-2)_
+    * ##### _2 EC2 instances in each region (US-East-1, US-West-2)_
+    * ##### _2 Route Tables_
 * ##### _Use the following setup script to download and launch our application on each instance_
 
 6. #### Configure a load balancer for each region our banking application is deployed in
@@ -54,9 +54,6 @@ _
 * #### _Create a load balancer_
 * #### _Attach each task to the load balancer_
 * #### _Check our application at the load balancers URL_
-
-
-
 
 
 ## System Diagram
