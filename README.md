@@ -50,10 +50,10 @@ _
 * ##### _Use the following setup script to download and launch our application on each instance_
 
 6. #### Configure a load balancer for each region our banking application is deployed in
-* #### _Create a task for each application instance_
-* #### _Create a load balancer_
-* #### _Attach each task to the load balancer_
-* #### _Check our application at the load balancers URL_
+* ##### _Create a task for each application instance_
+* ##### _Create a load balancer_
+* ##### _Attach each task to the load balancer_
+* ##### _Check our application at the load balancers URL_
 
 
 ## System Diagram
