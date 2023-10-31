@@ -8,7 +8,7 @@
 #### Our last deployment, 5.1, decoupled our application from our Jenkins server. This partially addressed the single point of failure issue and using Jenkins agents made our system architecture more distributed. However, our infrastructure was still allocated in a single region, leaving our system vulnerabe to a disaster and possible latency issues. We were also using SQLite, leaving our customers data exposed to anything that has access to our server. Our 2nd application server was also just used as a standby instance incase an availability zone went down.
 
 #### In Deployment 6, we solved several issues that our last deployment left us with.
-* #### We added an additional 2 application servers in US-West-2 for a multi-region infrastructure that'll fully address the single point of failure issue, ensuring that our application is prepared to still service customers in the event of a disaster
+* #### We added an additional 2 application servers in US-West-2 for a multi-region infrastructure that'll fully address the single point of failure issue (minus configuration), ensuring that our application is prepared to still service customers in the event of a disaster
 * #### We added a single load balancer in each region to equally distribute ingreess traffic amongst our 2 instances that are in seperate AZs, increasing our banking applications availability to facilitate users transactions.
 * #### We decoupled our database from our application by moving away from SQLite and using AWS RDS and this came at a cost of an increase in latency sinces we're no longer reading and writing data locally. However, we increased the scalability and flexibility of our database conponent. We also took a step ij the direction of making our users data more secure.
 * #### We intergrated Terraform into our Jenkins pipeline, deploying our infrastructure via a Jenkins agent, which optimized our applications infrastructure depoyment proceess.
@@ -114,5 +114,12 @@ git push
 <p align="center">
 <img src="https://github.com/djtoler2/Deployment6/blob/main/assets/dp6duagram.png">
 </p>
+___
 
-Optimization
+## Optimization
+#### Security: _Move our RDS into a private subnet for better security of our users' data_
+#### Security: _Move our application servers into a private subnet_
+#### Reliability: _Configure our infrastructure to failover to our alternate region if 1 region fails_
+#### Performance: _Add a cache in front of our database_
+#### Performance: _Add read replicas in the specific availability zones our application instances are in_
+#### Availability: _Add auto-scaling capabilities to our instances_
