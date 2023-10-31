@@ -22,26 +22,70 @@ ___
 ## Steps
 #### 1. Download banking application source code from GitHub to local machine
 * ##### _Create a GitHub token_
+> 
+```
+# Go to GitHub settings
+# Go to "Developer Settings" on the left panel
+# Click "Personal Access Tokens"
+# Click "Generate New Token" then "Generate Classic Token"
+# Select repo, admin:org, admin:repo_hook
+# Copy the token and paste it somewhere safe for future use
+```
+
 * ##### _Run this script to create a remote GitHub repository using your token (GitHub Repo Creation Script)_
+>
+```
+# Have you GitHub token ready & think of a name for your new repo
+curl -O https://github.com/djtoler/automated_installation_scripts/blob/main/auto-github_repo_create.sh
+chmod +x auto-github_repo_create.sh
+./auto-github_repo_create.sh <YourGitHubToken> <NameOfYourRepo>
+```
 * ##### _Set the remote GitHub repository in your local repository_
+>
+```
+git remote add origin http://github.com/<YourUserName>/<NameOfYourRepo>.git
+```
 * ##### _Clone the source code from GitHub into our local repo and push into the remote repo_
-* ##### _Create our second branch calld "dev1" to build our infrastructure_
-_
+>
+```
+git clone https://github.com/djtoler2/Deployment6.git
+cd Deployment6
+git add .
+git commit -m'pushing source code to remote repo'
+git push
+```
+* ##### _Create our second branch calld `dev1` to build our infrastructure_
+```
+git checkout -b dev1
+git push -u origin dev1
+```
 #### 2. Use Terraform to deploy our CICD infrastructure using Jenkins controller/agent architecture
-* ##### _Switch to our "dev1" branch_
-* ##### _Create 3 Terraform files called "main.tf", "variables.tf" & "terraform.tfvars"_
-* ##### _Usimg Terraform, configure 2 EC2 instances, 1 for our Jenkins controller server and 1 for our Jenkins agent server_
+* ##### _Create 3 Terraform files called `main.tf` `variables.tf` & `terraform.tfvars`_
+* ##### _Using Terraform, configure 2 EC2 instances, 1 for our Jenkins controller server and 1 for our Jenkins agent server_
+    * ##### [`main.tf`](https://github.com/djtoler2/Deployment6/blob/main/main.tf), [`variables.tf`](https://github.com/djtoler2/Deployment6/blob/main/variables.tf) & [`terraform.tfvars`](https://github.com/djtoler2/Deployment6/blob/main/terraform.tfvars)_
 * ##### _Create a userdata script to install the dependencides for each instance_
+>
+```
+curl -O https://raw.githubusercontent.com/djtoler2/Deployment6/main/ud_jenkins_agent_tf.sh
+curl -O https://github.com/djtoler2/Deployment6/blob/main/ud_jenkins_controller.sh
+```
+
+ Make sure our userdata scripts are in root directory                  | Use them in main.tf like this                     |
+| ----------------------------------- | ----------------------------------- |
+| ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/Screenshot%202023-10-31%20at%201.30.12%20PM.png) | ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/Screenshot%202023-10-31%20at%201.35.53%20PM.png) | 
+
 * ##### _Deploy the 2 Jenkins instances_
+    * Run `./tf_deploy.sh`
 
 3. #### Store AWS credentials as enviornment variables in Jenkins
-* #### _Follow the steps outlined here to store credintals in GitHub_
+* ##### (_Follow the steps outlined here to store credintals in Jenkins)[https://scribehow.com/shared/How_to_Securely_Configure_AWS_Access_Keys_in_Jenkins__MNeQvA0RSOWj4Ig3pdzIPw]
 
 4. #### _Set up AWS RDS database_
-* ##### _Follow the steps outlined here to store credintals in GitHub_
+* ##### (_Follow the steps outlined here to set up AWS Relational Database Service_)[https://scribehow.com/shared/How_to_Create_an_AWS_RDS_Database__zqPZ-jdRTHqiOGdhjMI8Zw]
+
 
 5. #### Deploy our multi-region banking application infrastructure from our Jenkins agent using Terraform
-* ##### _Configure Terraform files to deploy:_
+* ##### _Configure Terraform files to deploy and launch our application on each instance:_
     * ##### _2 VPC's (US-East-1, US-West-2)_
     * ##### _2 Route Tables_
     * ##### _2 Subnets in each region (US-East-1, US-West-2)_
@@ -49,7 +93,14 @@ _
     * ##### _1 Internet Gateway in each region (US-East-1, US-West-2)_
     * ##### _2 EC2 instances in each region (US-East-1, US-West-2)_
     * ##### _2 Route Tables_
-* ##### _Use the following setup script to download and launch our application on each instance_
+
+> ```
+> cd terraformInit
+
+> git add .
+> git commit -m"pushing infrastructure"
+> git push
+> ```
 
 6. #### Configure a load balancer for each region our banking application is deployed in
 * ##### _Create a task for each application instance_
