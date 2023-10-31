@@ -113,7 +113,7 @@ git push
 > ```
 
 6. #### Configure a load balancer for each region our banking application is deployed in
-* ##### _Create a task for each application instance_
+* ##### _Create a target group for each application instance_
  * <p align="left"><img src="https://github.com/djtoler2/Deployment6/blob/main/assets/lb5050.PNG" width="75%"></p>
 
 * ##### _Create a load balancer_
