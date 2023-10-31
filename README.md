@@ -28,6 +28,14 @@ ___
 | ----------------------------------- | ----------------------------------- |
 | ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/elberror3.PNG) | ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/elberror4.PNG) |
 
+#### 2. Incompatable dependency versions during application install
+
+<p align="center">
+<img src="https://github.com/djtoler/Deployment6/blob/main/assets/configdrifterror.PNG">
+</p>
+
+#### This error occured during the installation of our setup process on our application instances. I ran the commands line by line once the application didnt deploy automatically. I noticed that because we were not running these commands inside our Python virtual enviornment, we were experiencing configuration drift. To fix this, I simply switched the order of setup commands and we had a successful application launch.
+
 ___
 
 ## Steps
@@ -120,6 +128,7 @@ git push
 * ##### _Attach each task to the load balancer_
 * ##### _Check our application at the load balancers URL_
 
+___
 
 
 ## System Diagram
