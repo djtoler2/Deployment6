@@ -78,10 +78,10 @@ curl -O https://github.com/djtoler2/Deployment6/blob/main/ud_jenkins_controller.
     * Run `./tf_deploy.sh`
 
 3. #### Store AWS credentials as enviornment variables in Jenkins
-* ##### (_Follow the steps outlined here to store credintals in Jenkins)[https://scribehow.com/shared/How_to_Securely_Configure_AWS_Access_Keys_in_Jenkins__MNeQvA0RSOWj4Ig3pdzIPw]
+* ##### [_Follow the steps outlined here to store credintals in Jenkins_](https://scribehow.com/shared/How_to_Securely_Configure_AWS_Access_Keys_in_Jenkins__MNeQvA0RSOWj4Ig3pdzIPw)
 
 4. #### _Set up AWS RDS database_
-* ##### (_Follow the steps outlined here to set up AWS Relational Database Service_)[https://scribehow.com/shared/How_to_Create_an_AWS_RDS_Database__zqPZ-jdRTHqiOGdhjMI8Zw]
+* ##### [_Follow the steps outlined here to set up AWS Relational Database Service_](https://scribehow.com/shared/How_to_Create_an_AWS_RDS_Database__zqPZ-jdRTHqiOGdhjMI8Zw)
 
 
 5. #### Deploy our multi-region banking application infrastructure from our Jenkins agent using Terraform
@@ -95,11 +95,10 @@ curl -O https://github.com/djtoler2/Deployment6/blob/main/ud_jenkins_controller.
     * ##### _2 Route Tables_
 
 > ```
-> cd terraformInit
-
-> git add .
-> git commit -m"pushing infrastructure"
-> git push
+cd terraformIni
+git add .
+git commit -m"pushing infrastructure"
+git push
 > ```
 
 6. #### Configure a load balancer for each region our banking application is deployed in
@@ -107,6 +106,7 @@ curl -O https://github.com/djtoler2/Deployment6/blob/main/ud_jenkins_controller.
 * ##### _Create a load balancer_
 * ##### _Attach each task to the load balancer_
 * ##### _Check our application at the load balancers URL_
+
 
 
 ## System Diagram
