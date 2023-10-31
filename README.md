@@ -1,4 +1,6 @@
-## Deployment 6
+<p align="center">
+<img src="https://github.com/djtoler2/Deployment6/blob/main/assets/Graphic%20Design-7.png">
+</p>
 
 ## Purpose
 #### The goal of Deployment 6 was to enhance the reliability of our banking application infrastructure. By doing this, we increase the confidence of our users, ensuring they have consistent and uninterrupted access to our services. This growth in user confidence will cause an increase in user loyalty which directly translates into more transactions & revenue.
@@ -15,7 +17,7 @@ ___
 
 Issues
 
-
+___
 
 ## Steps
 #### 1. Download banking application source code from GitHub to local machine
