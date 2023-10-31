@@ -8,10 +8,10 @@
 #### Our last deployment, 5.1, decoupled our application from our Jenkins server. This partially addressed the single point of failure issue and using Jenkins agents made our system architecture more distributed. However, our infrastructure was still allocated in a single region, leaving our system vulnerabe to a disaster and possible latency issues. We were also using SQLite, leaving our customers data exposed to anything that has access to our server. Our 2nd application server was also just used as a standby instance incase an availability zone went down.
 
 #### In Deployment 6, we solved several issues that our last deployment left us with.
-* #### We added an additional 2 application servers in US-West-2 for a multi-region infrastructure that'll fully address the single point of failure issue.
-* #### We added a single load balancer in each region to equally distribute ingreess traffic amongst our 2 instances that are in seperate AZs, increasing our banking applications availability.
-* #### We decoupled our database from our application by moving away from SQLite and using AWS RDS. This increased the scalability andflexibility of our database conponent and made our users data more secure. This came at a cost of an increase in latency sinces we're no longer reading and writing data locally.
-* #### We also intergrated Terraform into our Jenkins pipeline, deploying our infrastructure via a Jenkins agent, which optimized our applications infrastructure depoyment proceess.
+* #### We added an additional 2 application servers in US-West-2 for a multi-region infrastructure that'll fully address the single point of failure issue, ensuring that our application is prepared to still service customers in the event of a disaster
+* #### We added a single load balancer in each region to equally distribute ingreess traffic amongst our 2 instances that are in seperate AZs, increasing our banking applications availability to facilitate users transactions.
+* #### We decoupled our database from our application by moving away from SQLite and using AWS RDS and this came at a cost of an increase in latency sinces we're no longer reading and writing data locally. However, we increased the scalability and flexibility of our database conponent. We also took a step ij the direction of making our users data more secure.
+* #### We intergrated Terraform into our Jenkins pipeline, deploying our infrastructure via a Jenkins agent, which optimized our applications infrastructure depoyment proceess.
 
 ___
 
