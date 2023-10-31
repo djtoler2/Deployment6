@@ -104,13 +104,13 @@ curl -O https://github.com/djtoler2/Deployment6/blob/main/ud_jenkins_controller.
     * ##### _1 Internet Gateway in each region (US-East-1, US-West-2)_
     * ##### _2 EC2 instances in each region (US-East-1, US-West-2)_
     * ##### _2 Route Tables_
-
-> ```
+>
+```
 cd terraformInit
 git add .
 git commit -m"pushing infrastructure"
 git push
-> ```
+```
 
 6. #### Configure a load balancer for each region our banking application is deployed in
 * ##### _Create a target group for each application instance_
@@ -127,6 +127,7 @@ git push
 <p align="center">
 <img src="https://github.com/djtoler2/Deployment6/blob/main/assets/dp6duagram.png">
 </p>
+
 ___
 
 ## Optimization
