@@ -15,7 +15,24 @@
 
 ___
 
-Issues
+## Issues
+#### 1. Load balancer return 504 error
+
+ Using Load balancer URL directly in browser                 | Using CURL with URL in command line                    |
+| ----------------------------------- | ----------------------------------- |
+| ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/elberror2.PNG) | ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/elberror.PNG) |
+
+#### We found that we needed to add a rule to our security group that allows egreess traffic to port 8000, our applicatoions port.
+
+ Default Outbound Security Group rules                 | Updated Outbound Security Group rules                   |
+| ----------------------------------- | ----------------------------------- |
+| ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/elberror3.PNG) | ![aaaaaa.png](https://github.com/djtoler2/Deployment6/blob/main/assets/elberror4.PNG) |
+
+
+<p align="center">
+<img src="https://github.com/djtoler2/Deployment6/blob/main/assets/lb5050.PNG">
+</p>
+
 
 ___
 
